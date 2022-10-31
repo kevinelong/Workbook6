@@ -33,3 +33,8 @@ function getIsOfAgeMessage(age) {
     return age >= 21 ? "YES" : "NO";
 }
 console.log(getIsOfAgeMessage(99))
+
+
+function isEven(n){
+    return n % 2 === 0; //Use Modulo division operator % to get remainder
+}

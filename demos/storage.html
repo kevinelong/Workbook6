@@ -1,0 +1,14 @@
+<body>
+    <input id="text"><button id="add">Add</button>
+    <div>Refresh page to see last item added.</div>
+    <div id="remembered"></div>
+</body>
+<script>
+    const text = document.getElementById("text")
+    const add = document.getElementById("add")
+    const remembered = document.getElementById("remembered")
+    add.addEventListener("click", e => {
+        window.localStorage.setItem("name", text.value);
+    });
+    remembered.innerHTML = window.localStorage.getItem("name");
+</script>

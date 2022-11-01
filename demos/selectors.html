@@ -1,0 +1,56 @@
+<body>
+    <div id="ship">Sailing...</div>
+    <img>
+    <img>
+    <img alt="yay!">
+    <img alt="yay!">
+    <img alt="yay!">
+</body>
+<script>
+    let results = document.querySelectorAll("#ship");
+    console.log(results); // returns a list tat contains one element
+
+    console.log(document.querySelectorAll("img[alt]"));
+
+    /*
+    14. What does document.querySelectorAll("#ship") select?
+    The element whose id is ship
+    All elements whose name is ship
+    All <ship> elements
+    The first <ship> element 
+    
+    15. What does document.querySelectorAll("p.red") select?
+    All <p> elements whose class is red
+    C: The <p> element whose id is red
+    All <p> elements whose name is red
+    The first <p> element
+    
+        
+    16. What does document.querySelectorAll("img[alt]") select?
+    The first <img> element
+    B: The <img> element whose id is alt
+    All <img> elements that has the alt attribute specified
+    All <img> elements that do not have the alt attribute specified 
+    */
+
+    // IN JS WE OMIT THE OPTIONAL QUOTES AROUND THE KEYS
+    js = {
+        a: 1,
+        b: 2
+    }
+
+    //JSON REQUIRES THE QUOTES AROUND THE KEYS
+    json = `{
+        "a": 1,
+        "b": 2
+    }`
+
+    console.log("js", js)
+    console.log("json", json)
+    
+    console.log("js stringified", JSON.stringify(js) ) //CONVERT OBJ TO TEXT
+    console.log("json parsed", JSON.parse(json) ) //CONVERT TEXT TO OBJ
+
+    
+    
+</script>

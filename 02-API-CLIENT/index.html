@@ -1,0 +1,45 @@
+<body>
+
+</body>
+<script>
+function showProducts(list){
+    list.forEach(p => {
+        document.body.innerHTML += `
+    <label>${p.name} ${p.price} 
+    <input name="quantity" value=1 type="number">
+    <button class="buy">ADD</button></label>
+    <br><br>
+        `;
+    });
+}
+
+/*CALL A REST(REpresentation, State Transfer) API(APPLICATION PROGRAMMERS INTERFACE) TO "GET" DATA TO DISPLAY
+ REST VERBS ARE THE HTTP PROTOCOL VERBS:
+ 
+ HTTP-VERB ACTION    SQL DB FUNCTION
+ ========= ========= ===============
+ POST      C(CREATE) INSERT
+*GET       R(READ)   SELECT*
+ PUT       U(UPDATE) UPDATE
+ DELETE    D(DELETE) DELETE
+ 
+ The "CRUD"
+ */
+
+const urlEndpoint  = "./mock-server-api/products.json"; //normally be https://example.com/api/products/"
+// built in fetch function uses "GET" verb/method BY DEFAULT
+fetch(urlEndpoint).then( //WAIT UNTIL PROMISE USING .then()
+    //DEAL WITH RESPONSE
+    (responseObject) => {
+        console.log("RAW RESPONSE: ", responseObject);
+        return responseObject.json() // PARSE JSON LIKE JSON.parse()
+    }
+).then(
+    (jsonData) => {
+        // a list in this case
+        console.log("whole object", jsonData);
+        console.log("individual inner object: ", jsonData[0].name, jsonData[0].price )
+        showProducts(jsonData);
+    }    
+)
+</script>

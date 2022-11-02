@@ -38,19 +38,99 @@ VERBS (Action words)
     purchase/buy
     leave vs ship
 */
-
-
+class Store{
+    constructor(){
+        this.currentCustomer = undefined;
+        this.productList = [];
+        this.customerList = [];
+    }
+    addProduct(product){
+        this.productList.push(product);
+    }
+    addCustomer(customer){
+        this.customerList.push(customer);
+        this.currentCustomer = customer;
+    }
+    getCurrentCustomer(){
+        return this.currentCustomer;
+    }
+    showList(){
+        console.log("PRODUCT LIST FOR STORE:");
+        this.productList.forEach(p=>console.log(p))
+    }
+}
+class Product{
+    constructor(name, price){
+        this.name = name;
+        this.price = price;
+    }
+    toString(){
+        return `${this.name} ($${this.price})`;
+    }
+}
+class LineItem{
+    constructor(product, quantity){
+        this.product = product;
+        this.quantity = quantity;
+    }
+    extendedPrice(){
+        return this.quantity * this.product.price;
+    }
+    toString(){
+        return this.product.toString() + ` QTY: ${this.quantity} = ${this.extendedPrice().toFixed(2)}`;
+    }
+}
+class Cart{
+    constructor(){
+        this.lineItemList = [];
+    }
+    addItem(item){
+        this.lineItemList.push(item);
+    }
+    showContents(){
+        console.log("CART:");
+        let total = 0;
+        this.lineItemList.forEach(item=>{
+            console.log(item.toString());
+            total += item.extendedPrice();
+        });
+        console.log("TOTAL: $" + total.toFixed(2));
+    }
+    checkout(){
+        console.log("CHecked Out!");
+    }
+}
+class Address{
+    constructor(line1,city,state,zip,country){
+        this.line1 = line1;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+    }
+}
+class Customer{
+    constructor(name){
+        this.name = name;
+        this.cart = new Cart()
+        this.address = undefined;
+    }
+    addAddress(address){
+        this.address = address;
+    }
+}
 //CREATE TESTS FIRST
-s = Store()
+s = new Store()
 s.addProduct(new Product("pencil", 0.12))
+s.addProduct(new Product("pad", 1.25))
 s.addCustomer(new Customer("Kevin"))
 s.showList()
 c = s.getCurrentCustomer()
-c.cart.addItem("pencil", 10)
-c.cart.addItem("pad", 2)
+c.cart.addItem(new LineItem(s.productList[0], 10))
+c.cart.addItem(new LineItem(s.productList[1], 2))
 c.cart.showContents(); // include tax and grand total
-c.customer.addAddress(new Address("1234 22nd ave", "portland", "or", "97018", "USA"))
-c.cart.checkout(address)
+c.addAddress(new Address("1234 22nd ave", "portland", "or", "97018", "USA"))
+c.cart.checkout(c.address)
 
 
 

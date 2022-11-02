@@ -87,14 +87,19 @@ class Cart{
     addItem(item){
         this.lineItemList.push(item);
     }
-    showContents(){
-        console.log("CART:");
+    getContents(){
+        let output = "";
+        output += "CART:\n";
         let total = 0;
         this.lineItemList.forEach(item=>{
-            console.log(item.toString());
+            output += item.toString() + "\n";
             total += item.extendedPrice();
         });
-        console.log("TOTAL: $" + total.toFixed(2));
+        output += "TOTAL: $" + total.toFixed(2) + "\n";
+        return output;
+    }
+    showContents(){
+        console.log(this.getContents());
     }
     checkout(){
         console.log("CHecked Out!");
@@ -131,7 +136,3 @@ c.cart.addItem(new LineItem(s.productList[1], 2))
 c.cart.showContents(); // include tax and grand total
 c.addAddress(new Address("1234 22nd ave", "portland", "or", "97018", "USA"))
 c.cart.checkout(c.address)
-
-
-
-

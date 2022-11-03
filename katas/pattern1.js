@@ -21,15 +21,20 @@ function pattern(n) {
     if (n < 1){
         return "";
     }
+
     let output = [];
-    // Happy Coding ^_^
-    for (var i = 1; i <= n; i++) {
+
+    for (i = 1; i <= n; i++) {
+
         let row = "";
+
         for(r=0;r < i; r++){
             row += i;
         }
+
         output.push(row);
     }
+    
     return output.join("\n");
 }
 console.log(pattern(5));
